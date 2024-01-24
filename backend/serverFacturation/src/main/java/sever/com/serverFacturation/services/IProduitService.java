@@ -11,7 +11,6 @@ public interface IProduitService {
     public List<ProduitDto> getListProduct();
     public ProduitDto getOneProduct(int id);
     public void deleteProduct(int id);
-    public ProduitDto convertEntityToDto(Produit produit) ;
-    public Produit convertDtoToEntity(ProduitDto produitDto);
+
 
 }
