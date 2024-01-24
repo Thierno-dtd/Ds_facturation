@@ -10,7 +10,7 @@ import sever.com.serverFacturation.exceptions.EntityNotFoundException;
 import sever.com.serverFacturation.exceptions.InvalidEntityException;
 import sever.com.serverFacturation.mappers.ApplicationMappers;
 import sever.com.serverFacturation.repositories.UserRepository;
-import sever.com.serverFacturation.services.IUserServices;
+import sever.com.serverFacturation.services.IUserService;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,16 +20,16 @@ import java.util.stream.Collectors;
 //@AllArgsConstructor
 @Slf4j
 @RequiredArgsConstructor
-public class UserService implements IUserServices {
+public class UserService implements IUserService {
     private final UserRepository usersRepository;
     private final ApplicationMappers applicationMappers;
 
 
     @Override
-    public UserDto rechargeSolde(int id, BigDecimal somme) {
-        if(somme.compareTo(BigDecimal.ZERO) <= 0) throw new InvalidEntityException("Le montant est est inférieur ou égale à 0");
+    public UserDto rechargeSolde(int id, Double somme) {
+        if(somme < 0) throw new InvalidEntityException("Le montant est est inférieur ou égale à 0");
         UserDto userDto = getOneUser(id);
-        userDto.setSolde(somme.add(userDto.getSolde()));
+        userDto.setSolde(somme+userDto.getSolde());
         updateUser(userDto, id);
         return  userDto;
     }
@@ -66,5 +66,9 @@ public class UserService implements IUserServices {
        return applicationMappers.convertEntityToDto(usersRepository.save(user));
     }
 
-
+    public void actualise(int id, double mm){
+        User user = applicationMappers.convertDtoToEntity(getOneUser(id));
+        user.setSolde(user.getSolde()-mm);
+        usersRepository.save(user);
+    }
 }

@@ -16,5 +16,7 @@ public class ProduitDto {
     private String nom;
     private Double prix;
     private LocalDate date_creation;
+    private String description;
+    private String img;
     private int categorie_id;
 }

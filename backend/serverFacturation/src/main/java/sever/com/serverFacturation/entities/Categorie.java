@@ -17,7 +17,9 @@ public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String designation;
+    private String image;
     @OneToMany(mappedBy = "categorie")
     private List<Produit> produits;
     

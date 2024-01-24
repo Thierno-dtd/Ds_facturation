@@ -24,7 +24,7 @@ public class UserDto {
     private String prenom;
     private String email;
     private String passwd;
-    private BigDecimal solde;
+    private Double solde;
     private String telephone;
     private LocalDate dateNaiss;
     private TypeRoles roles;

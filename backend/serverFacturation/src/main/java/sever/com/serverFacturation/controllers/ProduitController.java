@@ -1,5 +1,6 @@
 package sever.com.serverFacturation.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,9 +10,9 @@ import sever.com.serverFacturation.services.serviceImpl.ProduitService;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("produits")
 public class ProduitController {
-    @Autowired
     private ProduitService produitService;
 
     @PostMapping("/")

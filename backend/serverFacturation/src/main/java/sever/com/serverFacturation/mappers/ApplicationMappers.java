@@ -2,10 +2,9 @@ package sever.com.serverFacturation.mappers;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import sever.com.serverFacturation.dtos.CategorieDto;
-import sever.com.serverFacturation.dtos.ProduitDto;
-import sever.com.serverFacturation.dtos.UserDto;
+import sever.com.serverFacturation.dtos.*;
 import sever.com.serverFacturation.entities.Categorie;
+import sever.com.serverFacturation.entities.Facture;
 import sever.com.serverFacturation.entities.Produit;
 import sever.com.serverFacturation.entities.User;
 
@@ -28,6 +27,7 @@ public class ApplicationMappers {
     public Categorie convertDtoToEntity(CategorieDto categorieDto) {
         return Categorie.builder()
                 .id(categorieDto.getId())
+                .image(categorieDto.getImg())
                 .designation(categorieDto.getDesignation())
                 .build();
     }
@@ -36,6 +36,7 @@ public class ApplicationMappers {
         return CategorieDto.builder()
                 .id(categorie.getId())
                 .designation(categorie.getDesignation())
+                .img(categorie.getImage())
                 .build();
     }
 
@@ -45,6 +46,8 @@ public class ApplicationMappers {
                 .prix(produitDto.getPrix())
                 .nom(produitDto.getNom())
                 .date_creation(produitDto.getDate_creation())
+                .img(produitDto.getImg())
+                .description(produitDto.getDescription())
                 .categorie(Categorie.builder().id(produitDto.getCategorie_id()).build())
                 .build();
     }
@@ -54,7 +57,23 @@ public class ApplicationMappers {
                 .nom(produit.getNom())
                 .prix(produit.getPrix())
                 .categorie_id(produit.getCategorie().getId())
+                .img(produit.getImg())
+                .description(produit.getDescription())
                 .date_creation(produit.getDate_creation())
                 .build();
+    }
+
+    public Facture convertDtoToEntity(FacturerequestDto facturerequestDto){
+        return Facture.builder()
+                .produits(facturerequestDto.getProduits())
+                .prix(facturerequestDto.getPrix())
+                .client(facturerequestDto.getClient())
+                .build();
+    }
+
+    public FactureDto convertEntityToDto(Facture facture){
+        FactureDto factureDto = new FactureDto();
+        BeanUtils.copyProperties(facture, factureDto);
+        return factureDto;
     }
 }

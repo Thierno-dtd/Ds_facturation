@@ -36,7 +36,7 @@ public class User implements UserDetails {
     @NotBlank(message = "Le champs password ne peut pas être vide.")
     private String passwd;
 
-    private BigDecimal solde;
+    private Double solde;
     private String telephone;
     private LocalDate dateNaiss;
     @Column(name = "userRole",nullable = false)

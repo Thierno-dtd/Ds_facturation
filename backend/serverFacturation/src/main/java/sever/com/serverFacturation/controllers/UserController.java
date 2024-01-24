@@ -2,6 +2,7 @@ package sever.com.serverFacturation.controllers;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sever.com.serverFacturation.dtos.UserDto;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
@@ -37,7 +38,7 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUser(userDto, id));
     }
     @PostMapping("/{id}/{somme}")
-    public  ResponseEntity <UserDto> RechargeSolde(@PathVariable("id") int id,@PathVariable("somme") BigDecimal somme){
+    public  ResponseEntity <UserDto> RechargeSolde(@PathVariable("id") int id,@PathVariable("somme") Double somme){
         return ResponseEntity.ok(userService.rechargeSolde(id, somme));
     }
 }

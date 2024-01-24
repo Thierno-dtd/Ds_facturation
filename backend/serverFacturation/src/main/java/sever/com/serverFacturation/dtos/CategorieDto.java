@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class CategorieDto {
     private int id;
     private String designation;
+    private String img;
 }

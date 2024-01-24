@@ -37,6 +37,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .passwd(passwordEncoder.encode(request.getPasswd()))
                 .telephone(request.getTelephone())
+                .solde(0.0)
                 .dateNaiss(request.getDateNaiss())
                 .build();
         utilisateurRepository.save(user);
