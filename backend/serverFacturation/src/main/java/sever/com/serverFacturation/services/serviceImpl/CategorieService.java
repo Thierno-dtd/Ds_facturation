@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sever.com.serverFacturation.dtos.CategorieDto;
 import sever.com.serverFacturation.entities.Categorie;
+import sever.com.serverFacturation.exceptions.InvalidEntityException;
 import sever.com.serverFacturation.mappers.ApplicationMappers;
 import sever.com.serverFacturation.repositories.CategorieRepository;
 import sever.com.serverFacturation.services.ICategorieService;
@@ -38,6 +39,19 @@ public class CategorieService implements ICategorieService {
     public CategorieDto getOneCategorie(int id) {
         Categorie categorie = categorieRepository.findById(id).get();
         if(categorie == null) new EntityNotFoundException(" Aucune catégorie pour l'ID : "+id);
+        return applicationMappers.convertEntityToDto(categorie);
+    }
+
+    public Categorie getOneCategorieCat(int id) {
+        Categorie categorie = categorieRepository.findById(id).get();
+        if(categorie == null) new EntityNotFoundException(" Aucune catégorie pour l'ID : "+id);
+        return categorie;
+    }
+
+    @Override
+    public CategorieDto getOneCategorieByDesignation(String Name) {
+        Categorie categorie = categorieRepository.findByDesignation(Name).orElse(null);
+        if(categorie == null) throw new InvalidEntityException("Le nom de celle catégorie n'existe pas");
         return applicationMappers.convertEntityToDto(categorie);
     }
 

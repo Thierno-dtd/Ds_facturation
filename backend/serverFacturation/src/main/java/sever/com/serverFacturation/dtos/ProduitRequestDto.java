@@ -11,12 +11,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 @Builder
-public class ProduitDto {
-    private  int id;
+public class ProduitRequestDto {
+
     private String nom;
     private Double prix;
     private int quantite;
-    private LocalDate date_creation;
     private String description;
     private String img;
     private int categorie_id;

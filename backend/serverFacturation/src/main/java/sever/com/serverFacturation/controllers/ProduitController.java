@@ -24,6 +24,10 @@ public class ProduitController {
     public  ResponseEntity<List<ProduitDto>> getAllProduits(){
         return ResponseEntity.ok(produitService.getListProduct());
     }
+    @GetMapping("/ByCategorie/{id}")
+    public  ResponseEntity<List<ProduitDto>> getAllProduitsByCatd(@PathVariable int id){
+        return ResponseEntity.ok(produitService.getListProductByCatID(id));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProduitDto> getOneProduit(@PathVariable int id){
@@ -40,5 +44,10 @@ public class ProduitController {
     public ResponseEntity<Void> deleteProduit(@PathVariable int id){
         produitService.deleteProduct(id);
         return ResponseEntity.accepted().build();
+    }
+
+    @GetMapping("/search")
+    public List<ProduitDto> search(@RequestParam(name = "keyword",defaultValue = "") String keyword){
+        return produitService.search("%"+keyword+"%");
     }
 }

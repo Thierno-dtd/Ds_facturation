@@ -45,6 +45,7 @@ public class ApplicationMappers {
                 .id(produitDto.getId())
                 .prix(produitDto.getPrix())
                 .nom(produitDto.getNom())
+                .quantite(produitDto.getQuantite())
                 .date_creation(produitDto.getDate_creation())
                 .img(produitDto.getImg())
                 .description(produitDto.getDescription())
@@ -54,8 +55,10 @@ public class ApplicationMappers {
 
     public ProduitDto convertEntityToDto(Produit produit) {
         return ProduitDto.builder()
+                .id(produit.getId())
                 .nom(produit.getNom())
                 .prix(produit.getPrix())
+                .quantite(produit.getQuantite())
                 .categorie_id(produit.getCategorie().getId())
                 .img(produit.getImg())
                 .description(produit.getDescription())

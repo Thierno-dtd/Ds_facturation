@@ -17,8 +17,10 @@ public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String nom;
     private  Double prix;
+    private int quantite;
     private LocalDate date_creation;
     private boolean active;
     private String description;
