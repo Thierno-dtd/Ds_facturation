@@ -33,7 +33,12 @@
               "src/styles.less",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/js.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "./node_modules/scrollreveal/dist/scrollreveal.min.js",
+              "node_modules/swiper/swiper-bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
